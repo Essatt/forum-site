@@ -20,6 +20,8 @@ import ControlLabel from 'react-bootstrap/lib/ControlLabel'
 import HelpBlock from 'react-bootstrap/lib/HelpBlock'
 import uuidv4 from 'uuid/v4'
 import FieldGroup from './FieldGroup'
+import Home from 'react-icons/lib/fa/home'
+import { Link } from 'react-router-dom'
 
 import { myHeaders, api } from '../helper/config'
 import {
@@ -281,10 +283,8 @@ class PostDetail extends Component {
     }else{
       postFilter = this.props.post.filter((postL) => {
         if(this.props.match.params.id !== null && this.props.match.params.id !== undefined){
-
           return postL.id === this.props.match.params.id
         }else{
-
           return postL
         }
       }).map((post) => {
@@ -292,15 +292,25 @@ class PostDetail extends Component {
         var comment = this.getComments(post)
         localPost =
           <div>
+            <Row>
+              <Col xs={12} style={{fontSize: 60, fontWeight: 700}}>
+                <Row>
+                  <Link to='/'>
+                    <Home/>
+                  </Link>
+                </Row>
+              </Col>
+            </Row>
             <Row className="show-grid">
-
-              <Col xs={6} >
-                <span style={{fontSize: 30, fontWeight: 700}}>
-                  {`${post.title} `}
-                </span>
-                <span style={{fontSize: 25, fontWeight: 600}}>
-                   {`by ${post.author}`}
-                </span>
+              <Col xs={5} style={{textAlign: 'left', paddingBottom:5}}>
+                <Row>
+                  <span style={{fontSize: 30, fontWeight: 700}}>
+                    {`${post.title} `}
+                  </span>
+                  <span style={{fontSize: 25, fontWeight: 600}}>
+                     {`by ${post.author}`}
+                  </span>
+                </Row>
               </Col>
               <div style={{paddingTop: 17}}>
                 <Col xs={2} >
